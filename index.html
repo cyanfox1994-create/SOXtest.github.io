@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>SunRise Beauty | Салон красоты</title>
   <style>
-    /* ----- ОБЩИЕ СТИЛИ ----- */
     * {
       margin: 0;
       padding: 0;
@@ -14,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
-      background: #f9f5ff; /* очень светлый лавандовый фон */
+      background: #f9f5ff;
       color: #3b2b4f;
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -26,7 +25,6 @@
       padding: 0 20px;
     }
 
-    /* ----- ЦВЕТОВАЯ ПАЛИТРА (сирень/лаванда) ----- */
     :root {
       --lavender-light: #f3edff;
       --lavender: #d9c9ff;
@@ -69,7 +67,6 @@
       margin: 70px 0;
     }
 
-    /* ----- ШАПКА ----- */
     header {
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
@@ -102,13 +99,18 @@
     }
 
     .logo span {
-      background: #ede3ff;
+      background: #e7d8ff;
       padding: 4px 14px;
       border-radius: 40px;
       font-size: 0.9rem;
-      background: #e7d8ff;
       -webkit-text-fill-color: #4d2d6b;
       letter-spacing: 0.3px;
+    }
+
+    .logo img {
+      height: 50px;       /* Задайте нужную высоту вашего логотипа */
+      width: auto;        /* Ширина подстроится автоматически */
+      display: block;
     }
 
     nav {
@@ -150,7 +152,6 @@
       color: #4e2a7a;
     }
 
-    /* ----- ГЕРОЙ ----- */
     .hero {
       display: flex;
       align-items: center;
@@ -217,7 +218,13 @@
       box-shadow: 0 25px 45px rgba(160, 110, 220, 0.3);
     }
 
-    /* ----- О НАС ----- */
+    .hero-image img {
+      max-width: 75%; /* Фото не будет шире колонки */
+      height: auto;    /* Сохранит пропорции */
+      border-radius: 1000px; /* Можно скруглить углы, если подходит по стилю */
+    }
+
+
     .about {
       background: white;
       border-radius: 40px;
@@ -240,7 +247,6 @@
       color: #b491e8;
     }
 
-    /* ----- ПРАЙС-ЛИСТ (УСЛУГИ) ----- */
     .price-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -257,6 +263,7 @@
       border: 1px solid #efe4ff;
       display: flex;
       flex-direction: column;
+
     }
 
     .price-card:hover {
@@ -291,11 +298,50 @@
       font-weight: 700;
       color: #643f9e;
       background: #f5edff;
-      padding: 2px 12px;
+      padding: 10px 8px;
       border-radius: 30px;
+      white-space: nowrap
+
     }
 
-    /* ----- CTA (ЗАПИСАТЬСЯ) ----- */
+    .specials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .special-card {
+      background: white;
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: 0 15px 25px rgba(120, 70, 190, 0.12);
+      border: 1px solid #f0e4ff;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .special-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 35px rgba(130, 80, 200, 0.18);
+    }
+
+    .special-card h3 {
+      font-size: 1.6rem;
+      color: #3d235c;
+      margin-bottom: 10px;
+    }
+
+    .special-card .discount {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #a678e8;
+    }
+
+    .special-card p {
+      color: #56446b;
+    }
+
     .cta-block {
       background: linear-gradient(120deg, #ece0ff, #dfceff);
       border-radius: 50px;
@@ -316,7 +362,6 @@
       color: #4d3863;
     }
 
-    /* ----- ФУТЕР ----- */
     footer {
       background: #f2e9ff;
       border-radius: 35px 35px 0 0;
@@ -332,111 +377,87 @@
     .footer-contacts p {
       margin: 6px 0;
     }
+.gallery {
+  padding: 50px 5%;
+  background-color: #f9f7ff; /* Светло-лавандовый фон */
+}
 
-    /* ----- МОДАЛЬНОЕ ОКНО ЗАПИСИ ----- */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(40, 25, 55, 0.7);
-      backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-    }
+.gallery-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #4a4a7d;
+}
 
-    .modal.active {
-      display: flex;
-    }
+.gallery-grid {
+  display: grid;
+  /* Автоматические колонки: минимум 250px, максимум — 1 часть свободного места */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; /* Расстояние между фото */
+}
 
-    .modal-content {
-      background: #ffffff;
-      border-radius: 35px;
-      max-width: 450px;
-      width: 90%;
-      padding: 35px 30px;
-      box-shadow: 0 30px 50px rgba(100, 50, 150, 0.5);
-      position: relative;
-      animation: fadeSlide 0.3s ease;
-      border: 1px solid #e2ceff;
-    }
+.gallery-item img {
+  width: 100%;
+  height: 300px;      /* Фиксированная высота для ровной сетки */
+  object-fit: cover;  /* Фото заполнит область, не растягиваясь (обрежется лишнее) */
+  border-radius: 15px;
+  transition: transform 0.3s ease; /* Анимация при наведении */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* Эффект увеличения при наведении */
+.gallery-item img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.salon-interior {
+  box-shadow: var(--shadow);
+  border-radius: 40px;
+  padding: 80px 5%;
+  background-color: #ffffff;
+}
 
-    .modal-content h3 {
-      font-size: 1.9rem;
-      color: #3d235c;
-      margin-bottom: 20px;
-    }
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
 
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 22px;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #9677c7;
-      background: none;
-      border: none;
-    }
+.section-header h2 {
+  color: #4a4a7d;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 
-    .form-group {
-      margin-bottom: 18px;
-    }
+.interior-grid {
+  display: grid;
+  /* Создаем 4 колонки, которые подстраиваются под экран */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  grid-auto-flow: dense; /* Ключевая фишка: заполняет пустоты автоматически */
+  gap: 15px;
+}
 
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 14px 18px;
-      border: 2px solid #e2d2fc;
-      border-radius: 30px;
-      font-size: 1rem;
-      background: #fcfaff;
-      outline: none;
-      transition: 0.2s;
-    }
+.interior-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
 
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: #b491e8;
-      background: white;
-    }
+/* Эффекты для разнообразия (чередуйте классы в HTML) */
+.interior-item.wide {
+  grid-column: span 2; /* Растянуть в ширину */
+}
 
-    .submit-btn {
-      background: #b087e8;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      width: 100%;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.2s;
-    }
-
-    .submit-btn:hover {
-      background: #9460d6;
-    }
-
-    #successMessage {
-      display: none;
-      text-align: center;
-      padding: 20px;
-      color: #482b6b;
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-
-    /* адаптив */
+.interior-item.tall {
+  grid-row: span 2; /* Растянуть в высоту */
+}
     @media (max-width: 700px) {
+      .main-header {
+        flex-direction: column; /* Элементы встанут друг под другом */
+      }
+      .interior-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+      }
       .hero {
         padding: 35px 25px;
         flex-direction: column;
@@ -455,14 +476,16 @@
   <header>
     <div class="container header-inner">
       <div class="logo">
-        🌅 SunRise Beauty <span>lavender</span>
+	<img src="logo_new.jpg" alt="SunRise Beauty">
+        SunRise Beauty
+
       </div>
       <nav>
         <a href="#about">О нас</a>
         <a href="#services">Услуги</a>
-        <a href="#price">Прайс</a>
+        <a href="#specials">Акции</a>
         <a href="#contact">Контакты</a>
-        <a href="#" class="btn-outline" id="openModalNav">Записаться</a>
+        <a href="https://dikidi.app/1996126" target="_blank" class="btn-outline">Записаться</a>
       </nav>
     </div>
   </header>
@@ -472,11 +495,11 @@
     <section class="hero">
       <div class="hero-text">
         <h1>Сияние начинается здесь</h1>
-        <p>Лавандовое настроение, профессиональный уход и индивидуальный подход в SunRise Beauty.</p>
-        <button class="btn-primary" id="openModalHero">Записаться онлайн</button>
+        <p>Прекрасное настроение, профессиональный уход и индивидуальный подход в SunRise Beauty.</p>
+        <a href="https://dikidi.app/1996126" target="_blank" class="btn-primary">Записаться онлайн</a>
       </div>
       <div class="hero-image">
-        🌸✨
+        <img src="logo_new.jpg" alt="SunRise Beauty">
       </div>
     </section>
 
@@ -485,50 +508,132 @@
       <div class="about-icon">💜</div>
       <div class="about-text">
         <h2>О салоне</h2>
-        <p>SunRise Beauty — пространство нежной красоты в сиреневых тонах. Мы используем премиальную косметику, создаём расслабляющую атмосферу и гарантируем результат, который вы полюбите. Мастера с опытом от 5 лет, авторские техники и уют в каждой детали.</p>
+        <p>SunRise Beauty — пространство нежной красоты. Мы используем премиальную косметику, создаём расслабляющую атмосферу и гарантируем результат, который вы полюбите. Мастера с опытом от 5 лет, авторские техники и уют в каждой детали.</p>
       </div>
     </section>
 
-    <!-- Услуги и прайс -->
+<!-- Новая секция с фото салона -->
+<section class="salon-interior">
+  <div class="interior-grid">
+    <div class="interior-item wide"><img src="salon-1.jpg" alt="Салон"></div>
+    <div class="interior-item tall"><img src="salon-2.jpg" alt="Салон"></div>
+    <div class="interior-item"><img src="salon-3.jpg" alt="Салон"></div>
+    <div class="interior-item tall"><img src="salon-4.jpg" alt="Салон"></div>
+    <div class="interior-item wide"><img src="salon-5.jpg" alt="Салон"></div>
+    <div class="interior-item tall"><img src="salon-6.jpg" alt="Салон"></div>
+    <div class="interior-item"><img src="salon-7.jpg" alt="Салон"></div>
+    <div class="interior-item wide"><img src="salon-8.jpg" alt="Салон"></div>
+    <div class="interior-item"><img src="salon-9.jpg" alt="Салон"></div>
+    <div class="interior-item"><img src="salon-10.jpg" alt="Салон"></div>
+    <!-- Добавляйте новые фото сюда -->
+  </div>
+</section>
+
+    <!-- Услуги с ценами -->
     <section id="services">
       <h2>Услуги и цены</h2>
-      <div class="price-grid" id="price">
+      <div class="price-grid">
         <div class="price-card">
-          <div class="service-title">💇‍♀️ Волосы</div>
-          <div class="service-item"><span>Стрижка женская</span><span class="price">2800 ₽</span></div>
-          <div class="service-item"><span>Окрашивание (тон)</span><span class="price">4900 ₽</span></div>
-          <div class="service-item"><span>Укладка + уход</span><span class="price">2100 ₽</span></div>
-          <div class="service-item"><span>Кератиновое восстановление</span><span class="price">5800 ₽</span></div>
+          <div class="service-title">Маникюр</div>
+          <div class="service-item"><span>Мужская Обработка</span><span class="price">55 р.</span></div>
+          <div class="service-item"><span>Гигиеническая Обработка</span><span class="price">50 р.</span></div>
+          <div class="service-item"><span>Снятие + обработка + покрытие</span><span class="price">85 р.</span></div>
+          <div class="service-item"><span>Снятие+обработка</span><span class="price">60 р.</span></div>
+          <div class="service-item"><span>Обработка+покрытие</span><span class="price">70 р.</span></div>
+          <div class="service-item"><span>Снятие</span><span class="price">15 р.</span></div>
+          <div class="service-item"><span>Покрытие обычным лаком</span><span class="price">5-10 р.</span></div>
+          <div class="service-item"><span>Дизайн</span><span class="price">от 2 р.</span></div>
+	  <div class="service-item"><span>Ремонт ногтя</span><span class="price">8 р.</span></div>
         </div>
         <div class="price-card">
-          <div class="service-title">✨ Маникюр/педикюр</div>
-          <div class="service-item"><span>Маникюр с покрытием</span><span class="price">2400 ₽</span></div>
-          <div class="service-item"><span>Педикюр + гель-лак</span><span class="price">3200 ₽</span></div>
-          <div class="service-item"><span>Наращивание ногтей</span><span class="price">3900 ₽</span></div>
-          <div class="service-item"><span>Дизайн (1 ноготь)</span><span class="price">350 ₽</span></div>
+          <div class="service-title">Педикюр</div>
+          <div class="service-item"><span>Гигиенический</span><span class="price">65 р.</span></div>
+          <div class="service-item"><span>Мужской</span><span class="price">70 р.</span></div>
+          <div class="service-item"><span>Снятие + обработка + покрытие</span><span class="price">95 р.</span></div>
+          <div class="service-item"><span>Снятие + обработка</span><span class="price">75 р.</span></div>
+          <div class="service-item"><span>Подологический</span><span class="price">95 р.</span></div>
+          <div class="service-item"><span>Обработка стоп или пальцев</span><span class="price">40 р.</span></div>
+          <div class="service-item"><span>Покрытие обычным лаком</span><span class="price">5-10 р.</span></div>
         </div>
         <div class="price-card">
-          <div class="service-title">🧖‍♀️ Лицо и тело</div>
-          <div class="service-item"><span>Чистка лица ультразвук</span><span class="price">3500 ₽</span></div>
-          <div class="service-item"><span>Массаж лица (60 мин)</span><span class="price">2800 ₽</span></div>
-          <div class="service-item"><span>Обёртывание лавандовое</span><span class="price">4100 ₽</span></div>
-          <div class="service-item"><span>СПА-ритуал "SunRise"</span><span class="price">6200 ₽</span></div>
+          <div class="service-title">Парикмахерские Услуги</div>
+          <div class="service-item"><span>Стрижка женская</span><span class="price">от 60 р.</span></div>
+          <div class="service-item"><span>Стрижка мужская</span><span class="price">от 40 р.</span></div>
+          <div class="service-item"><span>Укладка повседневная</span><span class="price">от 45 р.</span></div>
+          <div class="service-item"><span>Окрашивание</span><span class="price">от 120 р.</span></div>
+          <div class="service-item"><span>Сложное Окрашивание</span><span class="price">от 280 р.</span></div>
+          <div class="service-item"><span>Мелирование классическое</span><span class="price">от 150 р.</span></div>
+          <div class="service-item"><span>Тонирование волос</span><span class="price">от 85 р.</span></div>
+          <div class="service-item"><span>Биохимические завивки</span><span class="price">от 170 р.</span></div>
+          <div class="service-item"><span>Прически вечерние/свадебные</span><span class="price">от 105 р.</span></div>
         </div>
         <div class="price-card">
-          <div class="service-title">🌸 Брови и ресницы</div>
-          <div class="service-item"><span>Архитектура бровей</span><span class="price">1800 ₽</span></div>
-          <div class="service-item"><span>Ламинирование ресниц</span><span class="price">2900 ₽</span></div>
-          <div class="service-item"><span>Наращивание ресниц</span><span class="price">4500 ₽</span></div>
-          <div class="service-item"><span>Окрашивание бровей</span><span class="price">900 ₽</span></div>
+          <div class="service-title">Брови</div>
+          <div class="service-item"><span>Коррекция(воск/пинцет)</span><span class="price">25 р.</span></div>
+          <div class="service-item"><span>Окрашивание(краска)</span><span class="price">30 р.</span></div>
+          <div class="service-item"><span>Ламинирование</span><span class="price">40 р.</span></div>
+          <div class="service-item"><span>Коррекция + Ламинирование</span><span class="price">35 р.</span></div>
+          <div class="service-item"><span>Коррекция + Окрашивание</span><span class="price">40 р.</span></div>
+          <div class="service-item"><span>Коррекция + Окрашивание + Д/У</span><span class="price">55 р.</span></div>
         </div>
       </div>
     </section>
 
-    <!-- CTA запись -->
+    <!-- Специальные предложения -->
+    <section id="specials">
+      <h2></h2>
+      <div class="specials-grid">
+        <div class="special-card">
+          <h3>Первое посещение</h3>
+          <div class="discount">-10%</div>
+          <p>Скидка для новых гостей на любую услугу</p>
+        </div>
+        <div class="special-card">
+          <h3>Карта любимого гостя</h3>
+          <div class="discount"> Получайте бонусы за визиты!</div>
+          <p>Каждый 5-й визит — приятный подарок, каждый 10-й — скидка 50%. Быть постоянным клиентом не только красиво, но и выгодно.</p>
+        </div>
+      </div>
+    </section>
+
+<section class="gallery">
+  <h2 class="gallery-title">Наши работы</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="photo1.jpg" alt="Маникюр">
+    </div>
+    <div class="gallery-item">
+      <img src="photo2.jpg" alt="Педикюр">
+    </div>
+    <div class="gallery-item">
+      <img src="photo3.jpg" alt="Дизайн ногтей">
+    </div>
+    <div class="gallery-item">
+      <img src="photo4.jpg" alt="Уход за руками">
+    </div>
+    <div class="gallery-item">
+      <img src="photo5.jpg" alt="Уход за руками1">
+    </div>
+    <div class="gallery-item">
+      <img src="photo6.jpg" alt="Уход за руками2">
+    </div>
+    <div class="gallery-item">
+      <img src="photo7.jpg" alt="Уход за руками3">
+    </div>
+    <div class="gallery-item">
+      <img src="photo8.jpg" alt="Уход за руками4">
+    </div>
+    <div class="gallery-item">
+      <img src="photo9.jpg" alt="Уход за руками5">
+    </div>
+  </div>
+</section>
+
+    <!-- CTA -->
     <div class="cta-block">
       <h2>Готовы к преображению?</h2>
       <p>Выберите удобное время — и мы подарим вам сияние SunRise</p>
-      <button class="btn-primary" id="openModalCta">Записаться онлайн</button>
+      <a href="https://dikidi.app/1996126" target="_blank" class="btn-primary">Записаться онлайн</a>
     </div>
   </main>
 
@@ -536,149 +641,14 @@
     <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 25px;">
       <div class="footer-contacts">
         <h3 style="color:#492e64;">SunRise Beauty</h3>
-        <p>📍 ул. Лавандовая, 12, Москва</p>
-        <p>📞 +7 (925) 123-45-67</p>
-        <p>✉️ sunrise@beauty.ru</p>
+        <p>📍 ул. Революционная, 22, Минск</p>
+        <p>📞 +375 (33) 377-34-43</p>
       </div>
       <div style="display: flex; align-items: center;">
-        <button class="btn-outline" id="openModalFooter" style="padding: 12px 28px;">Запись онлайн</button>
+        <a href="https://dikidi.app/1996126" target="_blank" class="btn-outline" style="padding: 12px 28px;">Запись онлайн</a>
       </div>
     </div>
-    <div class="container" style="margin-top: 20px; text-align: center; color: #6d5583;">© 2025 SunRise Beauty — сиреневое настроение</div>
+    <div class="container" style="margin-top: 20px; text-align: center; color: #6d5583;">© 2026 SunRise Beauty</div>
   </footer>
-
-  <!-- МОДАЛЬНОЕ ОКНО ЗАПИСИ -->
-  <div class="modal" id="bookingModal">
-    <div class="modal-content">
-      <span class="close-modal" id="closeModalBtn">&times;</span>
-      <div id="formContainer">
-        <h3>✨ Запись онлайн</h3>
-        <form id="bookingForm">
-          <div class="form-group">
-            <input type="text" id="name" placeholder="Ваше имя" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" id="phone" placeholder="Телефон" required>
-          </div>
-          <div class="form-group">
-            <select id="service" required>
-              <option value="" disabled selected>Выберите услугу</option>
-              <option>Стрижка женская</option>
-              <option>Окрашивание</option>
-              <option>Маникюр с покрытием</option>
-              <option>Педикюр</option>
-              <option>Чистка лица</option>
-              <option>Наращивание ресниц</option>
-              <option>СПА-ритуал SunRise</option>
-              <option>Другое</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="date" id="date" required>
-          </div>
-          <button type="submit" class="submit-btn">Отправить заявку</button>
-        </form>
-      </div>
-      <div id="successMessage">
-        💜 Спасибо! <br> Мы свяжемся с вами в течение 15 минут. <br> Хорошего дня!
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      // Получаем элементы
-      const modal = document.getElementById('bookingModal');
-      const closeBtn = document.getElementById('closeModalBtn');
-      const form = document.getElementById('bookingForm');
-      const formContainer = document.getElementById('formContainer');
-      const successMessage = document.getElementById('successMessage');
-
-      // Кнопки открытия модалки
-      const openButtons = [
-        document.getElementById('openModalNav'),
-        document.getElementById('openModalHero'),
-        document.getElementById('openModalCta'),
-        document.getElementById('openModalFooter')
-      ];
-
-      // Функция открытия
-      function openModal(e) {
-        e.preventDefault();
-        modal.classList.add('active');
-        // Сброс формы при открытии (если ранее было успешно отправлено)
-        if (form) form.reset();
-        formContainer.style.display = 'block';
-        successMessage.style.display = 'none';
-      }
-
-      // Функция закрытия
-      function closeModal() {
-        modal.classList.remove('active');
-      }
-
-      // Привязываем открытие ко всем кнопкам
-      openButtons.forEach(btn => {
-        if (btn) {
-          btn.addEventListener('click', openModal);
-        }
-      });
-
-      // Закрытие по крестику
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-      }
-
-      // Закрытие по клику вне модального окна
-      window.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Обработка отправки формы
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          // Простая имитация отправки (можно добавить реальный fetch)
-          const name = document.getElementById('name').value.trim();
-          const phone = document.getElementById('phone').value.trim();
-          const service = document.getElementById('service').value;
-          
-          if (!name || !phone || !service) {
-            alert('Пожалуйста, заполните все поля.');
-            return;
-          }
-
-          // Показываем сообщение об успехе
-          formContainer.style.display = 'none';
-          successMessage.style.display = 'block';
-          
-          // Здесь можно отправить данные на сервер через fetch/XMLHttpRequest
-          // Например: fetch('https://example.com/booking', {method:'POST', body: new FormData(form)})
-          
-          // Автоматически закроем через 4 секунды (необязательно)
-          setTimeout(() => {
-            closeModal();
-            // Вернем форму через небольшое время после закрытия (чтобы при следующем открытии всё было ок)
-            setTimeout(() => {
-              formContainer.style.display = 'block';
-              successMessage.style.display = 'none';
-              form.reset();
-            }, 400);
-          }, 4000);
-        });
-      }
-
-      // Закрытие по Escape
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-          closeModal();
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
-```
